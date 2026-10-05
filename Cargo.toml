@@ -1,0 +1,11 @@
+[package]
+name = "maat"
+description = "The law of Amentys: weigh the Seal, endow caps, supervise pillars"
+keywords = ["weigh", "law", "supervise", "endow"]
+license.workspace = true
+edition.workspace = true
+version.workspace = true
+
+[dependencies]
+plan = { workspace = true }
+linked_list_allocator = { workspace = true }
