@@ -4,6 +4,8 @@ autobins = false
 edition = "2024"
 version = "0.1.0"
 repository = "https://github.com/dualys/maat"
+license = "AGPL-3.0-or-later"
+description = "init of dualys os"
 [[bin]]
 name = "maaty"
 path = "src/main.rs"
