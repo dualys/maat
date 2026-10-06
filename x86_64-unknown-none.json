@@ -17,7 +17,6 @@
   "code-model": "kernel",
   "pre-link-args": {
     "gnu-lld": [
-      "-Tlinker.ld",
       "--gc-sections",
       "-z", "max-page-size=0x1000",
       "-z", "text"

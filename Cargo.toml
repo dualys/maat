@@ -1,11 +1,14 @@
 [package]
 name = "maaty"
-description = "Weigh the Seal, endow caps, supervise pillars"
-keywords = ["weigh", "law", "supervise", "endow"]
-license = "AGPL-3.0-or-later"
+autobins = false
 edition = "2024"
-version = "0.1.0"
-repository = "https://github.com/dualys/maat"
+[[bin]]
+name = "maaty"
+path = "src/main.rs"
+required-features = ["userspace"]
+
+[features]
+userspace = []
 
 [dependencies]
 heapless = { version = "0.9.3", default-features = false }

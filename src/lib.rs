@@ -51,7 +51,7 @@ impl Anubis {
     /// Calls the provided closure to set the exit code for the [`Anubis`] instance.
     ///
     /// # Parameters
-    /// - `f`: A closure that returns the exit code to be set for the [`Anubis`] instance   
+    /// - `f`: A closure that returns the exit code to be set for the [`Anubis`] instance
     pub fn call(&mut self, f: impl Fn(Scribe) -> usize) {
         self.code = f(Scribe::new());
     }
