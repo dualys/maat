@@ -1,6 +1,6 @@
 [package]
 name = "maaty"
-description = "The law of Amentys: weigh the Seal, endow caps, supervise pillars"
+description = "Weigh the Seal, endow caps, supervise pillars"
 keywords = ["weigh", "law", "supervise", "endow"]
 license = "AGPL-3.0-or-later"
 edition = "2024"
