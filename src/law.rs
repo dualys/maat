@@ -1,5 +1,5 @@
-use plan::Plan;
-use plan::sceau::{Sceau, Verdict};
+use plans::Plan;
+use plans::sceau::{Sceau, Verdict};
 
 /// Weighs a plan against a sceau and returns the verdict.
 ///
