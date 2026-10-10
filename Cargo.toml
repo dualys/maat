@@ -18,14 +18,3 @@ userspace = []
 heapless = { version = "0.9.3", default-features = false }
 linked_list_allocator = { version = "0.10.6", default-features = false, features = ["use_spin"] }
 plans = "0.1.0"
-
-[profile.dev]
-opt-level = 2
-panic = "abort"
-
-[profile.release]
-opt-level = 2
-panic = "abort"
-
-[profile.dev.package."*"]
-opt-level = 3
