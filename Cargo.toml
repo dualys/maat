@@ -2,29 +2,12 @@
 name = "maaty"
 autobins = false
 edition = "2024"
-version = "0.1.0"
+workspace.version = true 
 repository = "https://github.com/dualys/maat"
-license = "AGPL-3.0-or-later"
+workspace-licensee = true
 description = "init of dualys os"
-[[bin]]
-name = "maaty"
-path = "src/main.rs"
-required-features = ["userspace"]
 
-[features]
-userspace = []
 
 [dependencies]
 linked_list_allocator = { version = "0.10.6", default-features = false, features = ["use_spin"] }
 plans = "0.1.0"
-
-[profile.dev]
-opt-level = 2
-panic = "abort"
-
-[profile.release]
-opt-level = 2
-panic = "abort"
-
-[profile.dev.package."*"]
-opt-level = 3
