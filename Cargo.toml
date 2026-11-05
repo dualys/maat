@@ -1,11 +1,9 @@
 [package]
 name = "maaty"
-autobins = false
 edition = "2024"
 version = "0.1.0" 
 repository = "https://github.com/dualys/maat"
 description = "init of dualys os"
-
 
 [dependencies]
 plans = "0.1.0"
