@@ -78,7 +78,7 @@ pub extern "C" fn _start() -> ! {
             .lock()
             .init(core::ptr::addr_of_mut!(HEAP).cast::<u8>(), HEAP_SIZE);
     }
-    wuu::ok("welcome");
+    wuu::success!("a");
     loop {
         core::hint::spin_loop();
     }
