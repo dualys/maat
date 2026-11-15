@@ -1,7 +1,5 @@
 #![cfg_attr(not(test), no_main, no_std)]
-
 extern crate alloc;
-use alloc::vec::Vec;
 use core::arch::asm;
 use core::fmt::{self, Write};
 use core::panic::PanicInfo;
@@ -40,6 +38,7 @@ const CYAN: &str = "\x1b[36;1m";
 #[allow(dead_code)]
 const GREEN: &str = "\x1b[32;1m";
 
+#[allow(dead_code)]
 fn get_screen_size() -> (u32, u32) {
     let mut packed_dims: u64;
     // Safety: get screen size
@@ -56,6 +55,8 @@ fn get_screen_size() -> (u32, u32) {
         (packed_dims & 0xFFFF_FFFF) as u32,
     )
 }
+
+#[allow(dead_code)]
 fn flush_screen(buffer: &[u32]) {
     // Safety: clear screen
     unsafe {
@@ -77,31 +78,7 @@ pub extern "C" fn _start() -> ! {
             .lock()
             .init(core::ptr::addr_of_mut!(HEAP).cast::<u8>(), HEAP_SIZE);
     }
-
-    let (width, height) = get_screen_size();
-
-    // Allocation du buffer vidéo dans l'espace utilisateur
-    let total_pixels = (width * height) as usize;
-    let mut buffer: Vec<u32> = alloc::vec![0; total_pixels];
-
-    // Dessin du fond graphique (Dégradé vertical)
-    for y in 0..height {
-        for x in 0..width {
-            let index = (y * width + x) as usize;
-
-            // Calcul d'un cyan stylisé qui s'assombrit vers le bas
-            let intensity = 255 - ((y * 255) / height);
-            let r = 0x00; // Rouge = 0
-            let g = intensity / 2; // Vert modéré
-            let b = intensity; // Bleu dominant (Cyan)
-
-            // Format XRGB (0x00RRGGBB)
-            buffer[index] = (r << 16) | (g << 8) | b;
-        }
-    }
-    // Envoi du buffer au noyau pour affichage immédiat
-    flush_screen(&buffer);
-
+    wuu::ok("welcome");
     loop {
         core::hint::spin_loop();
     }
