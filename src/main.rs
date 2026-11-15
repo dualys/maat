@@ -12,6 +12,7 @@ pub struct SyscallWriter;
 
 impl Write for SyscallWriter {
     fn write_str(&mut self, s: &str) -> core::fmt::Result {
+        // Safety: a
         unsafe {
             core::arch::asm!(
                 "syscall",
@@ -26,6 +27,7 @@ impl Write for SyscallWriter {
         Ok(())
     }
 }
+
 #[macro_export]
 macro_rules! print { ($($arg:tt)*) => { let _ = core::fmt::write(&mut $crate::SyscallWriter, core::format_args!($($arg)*)); }; }
 #[macro_export]
