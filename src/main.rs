@@ -1,7 +1,7 @@
 #![cfg_attr(not(test), no_main, no_std)]
 extern crate alloc;
 use core::arch::asm;
-use core::fmt::{self, Write};
+use core::fmt::Write;
 use core::panic::PanicInfo;
 use linked_list_allocator::LockedHeap;
 
@@ -9,20 +9,23 @@ use linked_list_allocator::LockedHeap;
 static ALLOCATOR: LockedHeap = LockedHeap::empty();
 
 pub struct SyscallWriter;
+
 impl Write for SyscallWriter {
-    fn write_str(&mut self, s: &str) -> fmt::Result {
-        // safety: aa
+    fn write_str(&mut self, s: &str) -> core::fmt::Result {
         unsafe {
-            asm!(
-            "syscall",
-            in("rax") 1, in("rdi") 0, in("rsi") s.as_ptr() as u64, in("rdx") s.len() as u64,
-            out("rcx") _, out("r11") _,
+            core::arch::asm!(
+                "syscall",
+                in("rax") 1,
+                in("rdi") 1,
+                in("rsi") s.as_ptr() as u64,
+                in("rdx") s.len() as u64,
+                out("rcx") _,
+                out("r11") _,
             );
         }
         Ok(())
     }
 }
-
 #[macro_export]
 macro_rules! print { ($($arg:tt)*) => { let _ = core::fmt::write(&mut $crate::SyscallWriter, core::format_args!($($arg)*)); }; }
 #[macro_export]
